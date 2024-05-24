@@ -1,100 +1,98 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyHome());
+  runApp(const MyApp());
 }
 
-class MyHome extends StatelessWidget {
-  const MyHome({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Home'),
-          leading: const Icon(
-            Icons.home,
-            color: Colors.blue,
+      title: 'Login',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const LoginPage(),
+
+    );
+  }
+}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage>{
+  final _formkey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _PasswordController = TextEditingController();
+
+  void _login() {
+    if (_formkey.currentState?.validate() ?? false){
+      //logika 
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Login successfull')),
+      );
+    }
+  }
+  
+  @override 
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('login'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formkey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextFormField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value){
+                  if (value == null || value.isEmpty){
+                    return 'Please enter your email';
+                  }else if (!RegExp(r'[^@]+[^@]+\.[^@]+').hasMatch(value)){
+                    return 'please enter your email';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16.0),
+              TextFormField(
+                controller: _PasswordController,
+                decoration: const InputDecoration(
+                  labelText: 'password',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+                validator: (value){ 
+                  if (value == null || value.isEmpty){
+                    return 'please enter your password';
+                  }else if (value.length < 6) {
+                    return 'password must be at least 6 characters long';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 24.0),
+              ElevatedButton(
+                onPressed: _login,
+                child: const Text('Login')
+              ),
+            ],
           ),
-        ),
-        body: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: const BoxDecoration(color: Colors.yellow),
-                  child: const Center(
-                    child: Text(
-                      '1',
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: const BoxDecoration(color: Colors.green),
-                  child: const Center(
-                    child: Text(
-                      '2',
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: const BoxDecoration(color: Colors.red),
-                  child: const Center(
-                    child: Text(
-                      '3',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-                        Row(
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: const BoxDecoration(color: Colors.green),
-                  child: const Center(
-                    child: Text(
-                      '4',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: const BoxDecoration(color: Colors.red),
-                  child: const Center(
-                    child: Text(
-                      '5',
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: const BoxDecoration(color: Colors.yellow),
-                  child: const Center(
-                    child: Text(
-                      '6',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
         ),
       ),
     );
