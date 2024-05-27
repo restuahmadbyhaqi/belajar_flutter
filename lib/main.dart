@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Instagram Login',
+      title: 'poke',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    hintText: 'Email',
+                    hintText: 'Nama pengguna, email, atau nomor ponsel',
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -70,18 +70,18 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
+                      return 'Nama pengguna, email, atau nomor ponsel';
                     } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      return 'Please enter a valid email address';
+                      return 'Masukan nama pengguna atau email';
                     }
                     return null;
                   },
                 ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 10.0),
                 TextFormField(
                   controller: _passwordController,
                   decoration: InputDecoration(
-                    hintText: 'Password',
+                    hintText: 'Kata sandi',
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -92,9 +92,9 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
+                      return 'Kata sandi';
                     } else if (value.length < 6) {
-                      return 'Password must be at least 6 characters long';
+                      return 'Masukan kata sandi';
                     }
                     return null;
                   },
@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: const Text('Log In'),
                 ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
