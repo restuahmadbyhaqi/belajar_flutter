@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: const SampleText(),
     );
   }
 }
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Nama pengguna, email, atau nomor ponsel';
+                      return 'masukan Nama pengguna, email, atau nomor ponsel';
                     } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
                       return 'Masukan nama pengguna atau email';
                     }
