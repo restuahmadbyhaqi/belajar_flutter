@@ -10,11 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'poke',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SampleText(),
+      home: const LoginPage(),
     );
   }
 }
@@ -119,7 +120,6 @@ class _LoginPageState extends State<LoginPage> {
                     const Text("Don't have an account?"),
                     TextButton(
                       onPressed: () {
-                        // Navigate to sign up page
                       },
                       child: const Text('Sign Up'),
                     ),
