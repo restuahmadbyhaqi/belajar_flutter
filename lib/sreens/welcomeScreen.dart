@@ -32,6 +32,21 @@ class WelcomeScreen extends StatelessWidget {
                     child: Image.asset("alquran.png", scale: 0.8),
                   ),
                 ),
+                Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child: Text(
+                  "IslamHub",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                    wordSpacing: 2,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
               ],
             ),
             Align(
@@ -60,7 +75,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "IslamHub",
+                      "Hallo User",
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
@@ -69,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 15),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        padding: EdgeInsets.symmetric(horizontal: 35),
                         child: Text(
                           "Mari Belajar Agama, Insyaallah Berkah di Setiap Langkah",
                           textAlign: TextAlign.center,
@@ -87,7 +102,7 @@ class WelcomeScreen extends StatelessWidget {
                           onTap: (){},
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                              vertical: 5, horizontal: 50),
+                              vertical: 5, horizontal: 60),
                               child: Text(
                                 "Get Start",
                                 style: TextStyle(
