@@ -23,9 +23,11 @@ class WelcomeScreen extends StatelessWidget{
               height:MediaQuery.of(context).size.height / 1.6,
               decoration:BoxDecoration(
                 color: Color(0xFF674AEF),
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(70)),
-              )
-            )
+                borderRadius: 
+                  BorderRadius.only(bottomRight: Radius.circular(70)),
+              ),
+              child: Center(child: Image.asset("alquran.png", scale: 0.8,),),
+            ),
           ],),
       ),
     );
