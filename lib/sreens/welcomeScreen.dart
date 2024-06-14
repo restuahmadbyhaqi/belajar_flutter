@@ -78,6 +78,27 @@ class WelcomeScreen extends StatelessWidget {
                             color: Colors.black.withOpacity(0.6),
                           ),
                         ),
+                      ),
+                      SizedBox(height: 60),
+                      Material(
+                        color: Color.fromARGB(255, 74, 80, 239),
+                        borderRadius: BorderRadius.circular(10),
+                        child: InkWell(
+                          onTap: (){},
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 60),
+                              child: Text(
+                                "Get Start",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1,
+                                ),
+                              ),
+                          )
+                        ),
                       )
                   ],
                 )
