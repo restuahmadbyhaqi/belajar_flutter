@@ -74,7 +74,7 @@ class WelcomeScreen extends StatelessWidget {
                           "Mari Belajar Agama, Insyaallah Berkah di Setiap Langkah",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 17,
                             color: Colors.black.withOpacity(0.6),
                           ),
                         ),
@@ -87,7 +87,7 @@ class WelcomeScreen extends StatelessWidget {
                           onTap: (){},
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 60),
+                              vertical: 5, horizontal: 50),
                               child: Text(
                                 "Get Start",
                                 style: TextStyle(
