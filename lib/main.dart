@@ -1,3 +1,4 @@
+import 'package:belajar_flutter/sreens/homeScreen.dart';
 import 'package:belajar_flutter/sreens/welcomeScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-    home: WelcomeScreen(),
+    home: homePage(),
     );
   }
 }
