@@ -1,5 +1,5 @@
+import 'package:belajar_flutter/sreens/homeScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:belajar_flutter/homePage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
       );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => const homePage()),
       );
     }
   }
@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => const HomePage()),
+                          MaterialPageRoute(builder: (context) => const homePage()),
                         );
                       },
                       child: const Text('Sign Up'),
