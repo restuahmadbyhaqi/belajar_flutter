@@ -28,6 +28,11 @@ class homePage extends StatelessWidget {
                       size: 30,
                       color: Colors.white,
                     ),
+                    Icon(
+                      Icons.notifications,
+                      size: 30,
+                      color: Colors.white,
+                    ),
                   ],
                 )
 
