@@ -34,8 +34,14 @@ class homePage extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ],
-                )
-
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.only(left: 3, bottom: 15),
+                  child: Text(
+                    "Hi, User",
+                  ),
+                  )
               ],
 
             )
