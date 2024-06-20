@@ -40,7 +40,33 @@ class homePage extends StatelessWidget {
                   padding: EdgeInsets.only(left: 3, bottom: 15),
                   child: Text(
                     "Hi, User",
+                     style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1,
+                      wordSpacing: 2,
+                    ),
+
                   ),
+                  ),
+                  Container(
+                    margin :EdgeInsets.only(top: 5, bottom: 20),
+                    width: MediaQuery.of(context).size.width,
+                    height: 55,
+                    alignment: Alignment.center,
+                    decoration:BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Cari info Kajian",
+                        hintStyle: TextStyle(
+                          color: Colors.black.withOpacity(0.5)
+                        )
+                      ),
+                    )
                   )
               ],
 
