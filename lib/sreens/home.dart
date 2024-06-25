@@ -1,34 +1,50 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   @override
-  _HomeState createState() => _HomeState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Bottom Navigation Bar Example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomeScreen(),
+    );
+  }
 }
 
-class _HomeState extends State<Home> {
-  int _currentIndex = 0;
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
-  final List<Widget> _children = [
-    HomeScreen(),
-    ChatScreen(),
-    VideoScreen(),
-    ProfileScreen(),
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  List<Widget> _widgetOptions = <Widget>[
+    HomeTab(),
+    ChatTab(),
+    VideoTab(),
+    ProfileTab(),
   ];
 
-  void onTabTapped(int index) {
+  void _onItemTapped(int index) {
     setState(() {
-      _currentIndex = index;
+      _selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_currentIndex],
+      appBar: AppBar(
+        title: Text('Bottom Navigation Bar'),
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped,
-        currentIndex: _currentIndex,
-        items: [
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -38,7 +54,7 @@ class _HomeState extends State<Home> {
             label: 'Chat',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.video_library),
+            icon: Icon(Icons.video_call),
             label: 'Video',
           ),
           BottomNavigationBarItem(
@@ -46,43 +62,58 @@ class _HomeState extends State<Home> {
             label: 'Profile',
           ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        onTap: _onItemTapped,
       ),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Home Screen'),
+      child: Text(
+        'Home',
+        style: TextStyle(fontSize: 24),
+      ),
     );
   }
 }
 
-class ChatScreen extends StatelessWidget {
+class ChatTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Chat Screen'),
+      child: Text(
+        'Chat',
+        style: TextStyle(fontSize: 24),
+      ),
     );
   }
 }
 
-class VideoScreen extends StatelessWidget {
+class VideoTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Video Screen'),
+      child: Text(
+        'Video',
+        style: TextStyle(fontSize: 24),
+      ),
     );
   }
 }
 
-class ProfileScreen extends StatelessWidget {
+class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Profile Screen'),
+      child: Text(
+        'Profile',
+        style: TextStyle(fontSize: 24),
+      ),
     );
   }
 }
