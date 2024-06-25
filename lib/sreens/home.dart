@@ -37,9 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bottom Navigation Bar'),
-      ),
       body: ListView(
         children: [
           Container(
@@ -91,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: EdgeInsets.only(left: 3, bottom: 15),
                   child: Text(
-                    "Hi, User",
+                    "",
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.white,
@@ -112,19 +109,19 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
-            label: 'Chat',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.video_call),
-            label: 'Video',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: '',
           ),
         ],
         currentIndex: _selectedIndex,
