@@ -71,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             prefixIcon: Icon(
                               Icons.search,
                               size: 25,
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -88,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: EdgeInsets.only(left: 3, bottom: 15),
                   child: Text(
-                    "",
+                    "Kajian",
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.white,
