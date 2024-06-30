@@ -1,125 +1,114 @@
-import 'package:belajar_flutter/sreens/homeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:belajar_flutter/sreens/home.dart';
+import 'package:belajar_flutter//register.dart';
+// import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
+class Loginpage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginpageState createState() => _LoginpageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginpageState extends State<Loginpage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  void _login() {
-    if (_formKey.currentState?.validate() ?? false) {
-      // Perform login logic
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login successful')),
-      );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const homePage()),
-      );
-    }
-  }
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Image.asset(
-                  'assets/instagram_logo.png',
-                  height: 100,
+      appBar: AppBar(
+        title: Text('Login'),
+        leading: Icon(Icons.home),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              Image.asset("assets/images/gambar-logo.png"),
+              SizedBox(height: 10),
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Username tidak boleh kosong';
+                  }
+                  return null;
+                },
+                controller: _usernameController,
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  border: OutlineInputBorder(),
                 ),
-                const SizedBox(height: 32.0),
-                TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    hintText: 'Nama pengguna, email, atau nomor ponsel',
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide: BorderSide.none,
-                    ),
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Password tidak boleh kosong';
+                  }
+                  return null;
+                },
+                controller: _passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisPage()),
+                      );
+                    },
+                    child: Text('Register'),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Masukan Nama pengguna, email, atau nomor ponsel';
-                    } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      return 'Masukan nama pengguna atau email';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 10.0),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                    hintText: 'Kata sandi',
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide: BorderSide.none,
-                    ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _login(context);
+                      }
+                    },
+                    child: Text('Login'),
                   ),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Kata sandi';
-                    } else if (value.length < 6) {
-                      return 'Masukan kata sandi';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 24.0),
-                ElevatedButton(
-                  onPressed: _login,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  ),
-                  child: const Text('Log In'),
-                ),
-                const SizedBox(height: 10.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Don't have an account?"),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => const homePage()),
-                        );
-                      },
-                      child: const Text('Sign Up'),
-                    ),
-                    
-                  ],
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  Future<void> _login(BuildContext context) async {
+    final response = await http.post(
+      Uri.parse('https://fakestoreapi.com/auth/login'),
+      body: {
+        'username': _usernameController.text,
+        'password': _passwordController.text,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Homepage()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login failed: Server error'),
+        ),
+      );
+    }
   }
 }
