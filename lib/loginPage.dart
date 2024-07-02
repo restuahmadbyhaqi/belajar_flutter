@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:belajar_flutter/sreens/home.dart';
-import 'package:belajar_flutter//register.dart';
+import 'package:belajar_flutter/sreens/register.dart';
 // import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -87,28 +87,28 @@ class _LoginpageState extends State<Loginpage> {
     );
   }
 
-  Future<void> _login(BuildContext context) async {
-    final response = await http.post(
-      Uri.parse('https://fakestoreapi.com/auth/login'),
-      body: {
-        'username': _usernameController.text,
-        'password': _passwordController.text,
-      },
-    );
+  // Future<void> _login(BuildContext context) async {
+  //   final response = await http.post(
+  //     Uri.parse('https://fakestoreapi.com/auth/login'),
+  //     body: {
+  //       'username': _usernameController.text,
+  //       'password': _passwordController.text,
+  //     },
+  //   );
 
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
+  //   if (response.statusCode == 200) {
+  //     final data = json.decode(response.body);
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => Homepage()),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Login failed: Server error'),
-        ),
-      );
-    }
-  }
+  //     Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => Homepage()),
+  //     );
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('Login failed: Server error'),
+  //       ),
+  //     );
+  //   }
+  // }
 }

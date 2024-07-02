@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:belajar_flutter/homePage.dart';
+import 'package:belajar_flutter/sreens/home.dart';
 import 'package:belajar_flutter/loginPage.dart';
 
 class RegisPage extends StatelessWidget {
